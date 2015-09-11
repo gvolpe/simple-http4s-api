@@ -1,5 +1,6 @@
 package com.gvolpe.api.service
 
+import com.gvolpe.api.service.Implicits._
 import org.http4s.dsl._
 import org.http4s.server.HttpService
 
@@ -9,9 +10,9 @@ object ProductService {
 
   private val service = HttpService {
     case GET -> Root =>
-      Ok(""" List("p1", "p2", "p3") """)
+      Ok(List(Product(1, "Book"), Product(2, "Calc"), Product(3, "Guitar")))
     case GET -> Root / id =>
-      Ok(s"p$id by ID")
+      Ok(Product(id.toLong, s"Name#$id"))
   }
 
 }
