@@ -11,8 +11,8 @@ object ProductService {
 
   private val service = HttpService {
     case GET -> Root =>
-      val json = Json.toJson(List(Product(1, "Book"), Product(2, "Calc"), Product(3, "Guitar")))
-      Ok(json)
+      val products = List(Product(1, "Book"), Product(2, "Calc"), Product(3, "Guitar"))
+      Ok(Json.toJson(products))
     case GET -> Root / id =>
       Ok(Json.toJson(Product(id.toLong, s"Name#$id")))
   }
