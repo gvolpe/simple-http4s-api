@@ -17,5 +17,6 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-core" % circeVersion,
   "io.circe" %% "circe-generic" % circeVersion,
   "io.circe" %% "circe-jawn" % circeVersion,
-  "com.chuusai" %% "shapeless" % "2.2.1"
+  "com.chuusai" %% "shapeless" % "2.2.1",
+  "org.scalatest" %% "scalatest" % "2.2.4"
 )
