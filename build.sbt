@@ -20,3 +20,5 @@ libraryDependencies ++= Seq(
   "com.chuusai" %% "shapeless" % "2.2.1",
   "org.scalatest" %% "scalatest" % "2.2.4"
 )
+
+ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := ".*Api.*"

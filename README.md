@@ -1,6 +1,9 @@
 simple-http4s-api
 =================
 
+[![Build Status](https://travis-ci.org/gvolpe/simple-http4s-api.svg)](https://travis-ci.org/gvolpe/simple-http4s-api)
+[![Coverage Status](https://coveralls.io/repos/gvolpe/simple-http4s-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/gvolpe/simple-http4s-api?branch=master)
+
 Just a simple project playing for the first time with [http4s](http://http4s.org/).
 
 Includes Json support examples using different libraries:
