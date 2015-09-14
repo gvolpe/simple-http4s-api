@@ -7,6 +7,7 @@ scalaVersion := "2.11.7"
 val http4sVersion = "0.10.0"
 val circeVersion = "0.1.1"
 
+resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases/"
 resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
 
 libraryDependencies ++= Seq(
