@@ -1,7 +1,10 @@
 package com.gvolpe.api.service
 
+import com.gvolpe.api.service.CirceImplicits._
 import org.http4s.dsl._
 import org.http4s.server.HttpService
+import io.circe.generic.auto._
+import io.circe.syntax._
 
 object UserService {
 
@@ -9,9 +12,10 @@ object UserService {
 
   private val service = HttpService {
     case GET -> Root =>
-      Ok(""" List("user1", "user2", "user3") """)
+      val users = List(User(1, "user1", "user1@mail.com"), User(2, "user2", "user2@mail.com"))
+      Ok(users.asJson)
     case GET -> Root / id =>
-      Ok(s"user$id by ID")
+      Ok(User(id.toLong, s"User$id", s"user$id@mail.com").asJson)
   }
 
 }

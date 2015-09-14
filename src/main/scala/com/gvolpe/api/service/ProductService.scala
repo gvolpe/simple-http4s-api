@@ -1,8 +1,9 @@
 package com.gvolpe.api.service
 
-import com.gvolpe.api.service.Implicits._
+import com.gvolpe.api.service.PlayJsonImplicits._
 import org.http4s.dsl._
 import org.http4s.server.HttpService
+import play.api.libs.json.Json
 
 object ProductService {
 
@@ -10,9 +11,10 @@ object ProductService {
 
   private val service = HttpService {
     case GET -> Root =>
-      Ok(List(Product(1, "Book"), Product(2, "Calc"), Product(3, "Guitar")))
+      val json = Json.toJson(List(Product(1, "Book"), Product(2, "Calc"), Product(3, "Guitar")))
+      Ok(json)
     case GET -> Root / id =>
-      Ok(Product(id.toLong, s"Name#$id"))
+      Ok(Json.toJson(Product(id.toLong, s"Name#$id")))
   }
 
 }
