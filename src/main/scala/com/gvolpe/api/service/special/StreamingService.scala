@@ -1,11 +1,10 @@
-package com.gvolpe.api.service
+package com.gvolpe.api.service.special
 
 import org.http4s.dsl._
 import org.http4s.server.HttpService
 
 import scala.concurrent.duration._
-import scalaz._
-import scalaz.\/._
+import scala.concurrent.forkjoin.ThreadLocalRandom
 import scalaz.concurrent.Strategy.DefaultTimeoutScheduler
 import scalaz.concurrent.Task
 import scalaz.stream.{Process, time}
@@ -22,20 +21,11 @@ object StreamingService {
       Ok(Process.eval(Task.delay("Hola!")))
     case GET -> Root / "range" =>
       Ok(Process.ranges(0, 100, 10).map(_.toString()))
-    case GET -> Root / "task" =>
+    case GET -> Root / "random" =>
       Ok(randomNumbers)
   }
 
-  private def asyncReadInt(callback: Throwable \/ Int => Unit): Unit = {
-    // imagine an asynchronous task which eventually produces an `Int`
-    try {
-      Thread.sleep(50)
-      val result = (math.random * 100).toInt
-      callback(right(result))
-    } catch { case t: Throwable => callback(left(t)) }
-  }
-
-  private val intTask: Task[Int] = Task.async(asyncReadInt)
+  private def intTask: Task[Int] = Task.now(ThreadLocalRandom.current().nextInt(100))
 
   private def randomNumbers: Process[Task, String] = {
     Process.eval(intTask)

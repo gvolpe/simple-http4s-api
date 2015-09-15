@@ -1,5 +1,6 @@
-package com.gvolpe.api.service
+package com.gvolpe.api.service.special
 
+import com.gvolpe.api.service.HttpServiceSpec
 import org.http4s.{Request, Status, Uri}
 
 class WsServiceSpec extends HttpServiceSpec {

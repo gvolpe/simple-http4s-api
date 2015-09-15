@@ -1,4 +1,4 @@
-package com.gvolpe.api.service
+package com.gvolpe.api.service.special
 
 import org.http4s.dsl._
 import org.http4s.server.HttpService
@@ -18,7 +18,7 @@ object WsService {
     case req @ GET -> Root  =>
       val src = time.awakeEvery(1.seconds)(DefaultStrategy, DefaultTimeoutScheduler).map{ d => Text(s"Ping! $d") }
       val sink: Sink[Task, WebSocketFrame] = Process.constant {
-        case Text(t, _) => Task.delay( println(t))
+        case Text(t, _) => Task.delay(println(t))
         case f          => Task.delay(println(s"Unknown type: $f"))
       }
       WS(Exchange(src, sink))

@@ -1,5 +1,6 @@
-package com.gvolpe.api.service
+package com.gvolpe.api.service.special
 
+import com.gvolpe.api.service.HttpServiceSpec
 import org.http4s.{Request, Status, Uri}
 
 class StreamingServiceSpec extends HttpServiceSpec {
@@ -40,7 +41,7 @@ class StreamingServiceSpec extends HttpServiceSpec {
     }
 
     "Get the random numbers response" in {
-      val request = new Request(uri = Uri(path = "/task"))
+      val request = new Request(uri = Uri(path = "/random"))
       val response = service.run(request).run
 
       response.status should be (Status.Ok)

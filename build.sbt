@@ -22,4 +22,4 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.2.4"
 )
 
-ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := ".*Api.*"
+ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := ".*Api.*;.*WsService.*"

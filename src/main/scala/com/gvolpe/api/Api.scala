@@ -1,6 +1,7 @@
 package com.gvolpe.api
 
 import com.gvolpe.api.service._
+import com.gvolpe.api.service.special.{WsService, StreamingService}
 import org.http4s.server.blaze.BlazeBuilder
 
 object Api extends App {
