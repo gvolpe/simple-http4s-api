@@ -4,7 +4,7 @@ import org.http4s.{Request, Status, Uri}
 
 class WsServiceSpec extends HttpServiceSpec {
 
-  "Home Service" should {
+  "WS Service" should {
 
     val service = WsService()
 
