@@ -23,7 +23,7 @@ object StreamingService {
     case GET -> Root / "range" =>
       Ok(Process.ranges(0, 100, 10).map(_.toString()))
     case GET -> Root / "task" =>
-      Ok(stringTask)
+      Ok(randomNumbers)
   }
 
   private def asyncReadInt(callback: Throwable \/ Int => Unit): Unit = {
@@ -37,7 +37,7 @@ object StreamingService {
 
   private val intTask: Task[Int] = Task.async(asyncReadInt)
 
-  private def stringTask: Process[Task, String] = {
+  private def randomNumbers: Process[Task, String] = {
     Process.eval(intTask)
       .repeat
       .take(25)
