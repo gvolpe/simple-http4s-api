@@ -1,5 +1,6 @@
 package com.gvolpe.api.service.special
 
+import com.gvolpe.api.service._
 import org.http4s.dsl._
 import org.http4s.server.HttpService
 
@@ -16,7 +17,7 @@ object StreamingService {
   private val service = HttpService {
     case GET -> Root =>
       val streamingData = Process.emit(s"Starting stream intervals\n\n") ++ dataStream(10)
-      Ok(streamingData)
+      Ok(streamingData).chunked
     case GET -> Root / "delay" =>
       Ok(Process.eval(Task.delay("Hola!")))
     case GET -> Root / "range" =>

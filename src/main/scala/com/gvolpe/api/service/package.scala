@@ -1,14 +1,23 @@
 package com.gvolpe.api
 
-import org.http4s.headers.`Content-Type`
-import org.http4s.{Charset, EntityEncoder, MediaType}
+import org.http4s.headers.{`Transfer-Encoding`, `Content-Type`}
+import org.http4s._
+import org.http4s.dsl._
 import play.api.libs.json.{JsValue, Json}
 import io.circe.{ Json => CirceJson }
+
+import scalaz.concurrent.Task
 
 package object service {
 
   case class User(id: Long, name: String, email: String)
   case class Product(id: Long, name: String)
+
+  implicit class ChunkedResponse(response: Task[Response]) {
+    def chunked: Task[Response] = {
+      response.putHeaders(`Transfer-Encoding`(TransferCoding.chunked))
+    }
+  }
 
   object CirceImplicits {
 
