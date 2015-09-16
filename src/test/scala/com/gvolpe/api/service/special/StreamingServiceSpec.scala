@@ -21,6 +21,7 @@ class StreamingServiceSpec extends HttpServiceSpec {
       val response = service.run(request).run
 
       response.status should be (Status.Ok)
+      response.headers.toString should include ("Transfer-Encoding: chunked")
       response.body.asString should (include ("Starting stream intervals") and include ("Current system time"))
     }
 
